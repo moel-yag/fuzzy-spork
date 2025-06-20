@@ -103,7 +103,8 @@ void free_ast_list(t_ast *head)
 
 bool ft_token_is_redirection(t_token_type type)
 {
-    return (type == TOKEN_REDIRECT_IN || type == TOKEN_REDIRECT_OUT || type == TOKEN_APPEND || type == TOKEN_HEREDOC);
+    return (type == TOKEN_REDIRECT_IN || type == TOKEN_REDIRECT_OUT
+            || type == TOKEN_APPEND || type == TOKEN_HEREDOC);
 }
 
 void ft_lst_push(t_list **head, void *value)

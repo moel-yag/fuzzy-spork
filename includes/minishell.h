@@ -1,6 +1,9 @@
 #ifndef MINISHELL_H
 #define MINISHELL_H
 
+#include "parsing.h"
+#include "minishell2.h"
+// #include "expansion.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -41,11 +44,11 @@ typedef struct s_global
     int exit_status; // Last exit status
 } t_global;
 // Structure for linked list nodes to store commands
-
 typedef struct s_command
 {
-    // char *command;
+    char *command;
     char **arguments;
+    t_redir **redirections; // List of redirections
     char *full_command;
     struct s_command *next;
 } t_command;

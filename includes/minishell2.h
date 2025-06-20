@@ -1,8 +1,6 @@
 #ifndef MINISHELL2_H
 #define MINISHELL2_H
 
-// #include "parsing.h"
-#include "minishell.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -29,25 +27,19 @@ typedef enum
     TOKEN_EOF, // End of file or input
 } t_token_type;
 
-typedef struct  s_token
+typedef struct s_token
 {
     char *value;          // The value of the token
     t_token_type type;    // The type of the token (e.g., command, argument, operator)
-    int is_quoted; // Indicates if the token is quoted
-    struct s_token *prev; // Pointer to the previous token in the list
     struct s_token *next; // Pointer to the next token in the list
-}               t_token;
+} t_token;
 
 // Token functions
-
-t_token *create_token(char *value, t_token_type type, int in_quote);
+t_token *create_token(char *value, t_token_type type);
 void add_token(t_token **head, t_token *new_token);
 void free_tokens(t_token *head);
 void print_tokens(t_token *head);
 t_token *tokenize_input(const char *input);
 t_token *tokenize(const char *input);
 
-// 
-// void expand(t_ast *ast, t_env *env);
-// 
 #endif // MINISHELL2_H

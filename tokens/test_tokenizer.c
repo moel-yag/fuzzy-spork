@@ -2,8 +2,8 @@
 #include "../includes/minishell.h"
 
 // Forward declarations
-// bool unclosed_quotes(const char *input);
-// t_token *tokenize(const char *input);
+bool unclosed_quotes(const char *input);
+t_token *tokenize(const char *input);
 
 // Implementation of unclosed_quotes function
 bool unclosed_quotes(const char *input)
@@ -44,40 +44,38 @@ void test_tokenizer(const char *input, const char *test_name)
     free_tokens(tokens);
 }
 
-// int main(void)
-// {
-//     // Test 1: Basic command
-//     test_tokenizer("ls'hello'     'world' ||<<<<>>>>", "Basic command");
+int main(void)
+{
+    // Test 1: Basic command
+    test_tokenizer("ls", "Basic command");
 
-//     // Test 2: Command with arguments
-//     test_tokenizer("ls -la", "Command with arguments");
+    // Test 2: Command with arguments
+    test_tokenizer("ls -la", "Command with arguments");
 
-//     // Test 3: Command with pipe
-//     test_tokenizer("ls | grep test", "Command with pipe");
+    // Test 3: Command with pipe
+    test_tokenizer("ls | grep test", "Command with pipe");
 
-//     // Test 4: Command with redirection
-//     test_tokenizer("ls > output.txt", "Command with output redirection");
-//     test_tokenizer("cat < input.txt", "Command with input redirection");
-//     test_tokenizer("ls >> output.txt", "Command with append redirection");
-//     // Test 4.1: Command with redirection and go creazy
-//     test_tokenizer("echo $a&'|'\"|<><><<><><><<>><>><\"<>><<<>> ls", "Command with redirection and special characters");
+    // Test 4: Command with redirection
+    test_tokenizer("ls > output.txt", "Command with output redirection");
+    test_tokenizer("cat < input.txt", "Command with input redirection");
+    test_tokenizer("ls >> output.txt", "Command with append redirection");
 
-//     // Test 5: Complex command
-//     test_tokenizer("ls -la | grep test > output.txt", "Complex command with pipe and redirection");
+    // Test 5: Complex command
+    test_tokenizer("ls -la | grep test > output.txt", "Complex command with pipe and redirection");
 
-//     // Test 6: Multiple spaces
-//     test_tokenizer("ls    -la    |    grep    test", "Multiple spaces");
+    // Test 6: Multiple spaces
+    test_tokenizer("ls    -la    |    grep    test", "Multiple spaces");
 
-//     // Test 7: Empty input
-//     test_tokenizer("", "Empty input");
+    // Test 7: Empty input
+    test_tokenizer("", "Empty input");
 
-//     // Test 8: Only spaces
-//     test_tokenizer("   ", "Only spaces");
+    // Test 8: Only spaces
+    test_tokenizer("   ", "Only spaces");
 
-//     // Test 9: Quoted strings
-//     test_tokenizer("echo \"hello world\"", "Double quoted string");
-//     test_tokenizer("echo 'hello world'", "Single quoted string");
-//     test_tokenizer("echo \"hello 'world'\"", "Nested quotes");
+    // Test 9: Quoted strings
+    test_tokenizer("echo \"hello world\"", "Double quoted string");
+    test_tokenizer("echo 'hello world'", "Single quoted string");
+    test_tokenizer("echo \"hello 'world'\"", "Nested quotes");
 
-//     return 0;
-// }
+    return 0;
+}
